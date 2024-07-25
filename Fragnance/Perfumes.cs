@@ -29,7 +29,7 @@ namespace Fragnance
                 this.baseNotes = baseNotes;
             }
 
-            public object this[int index]
+            public string this[int index]
             {
                 get
                 {
@@ -38,7 +38,7 @@ namespace Fragnance
                     else if (index == 1)
                         return this.brand;
                     else if (index == 2)
-                        return this.price;
+                        return this.price.ToString();
                     else if (index == 3)
                         return this.topNotes;
                     else if (index == 4)
@@ -46,58 +46,62 @@ namespace Fragnance
                     else if (index == 5)
                         return this.baseNotes;
                     else
-                        return null;
+                        throw new IndexOutOfRangeException();
                 }
                 set
                 {
                     if (index == 0)
-                        this.name = (string)value;
+                        this.name = value;
                     else if (index == 1)
-                        this.brand = (string)value;
+                        this.brand = value;
                     else if (index == 2)
-                        this.price = (double)value;
+                        this.price = double.Parse(value);
                     else if (index == 3)
-                        this.topNotes = (string)value;
+                        this.topNotes = value;
                     else if (index == 4)
-                        this.middleNotes = (string)value;
+                        this.middleNotes = value;
                     else if (index == 5)
-                        this.baseNotes = (string)value;
+                        this.baseNotes = value;
+                    else
+                        throw new IndexOutOfRangeException();
                 }
             }
 
-            public object this[string attrName]
+            public string this[string property]
             {
                 get
                 {
-                    if (attrName.ToLower() == "name")
+                    if (property == "name")
                         return this.name;
-                    else if (attrName.ToLower() == "brand")
+                    else if (property == "brand")
                         return this.brand;
-                    else if (attrName.ToLower() == "price")
-                        return this.price;
-                    else if (attrName.ToLower() == "topnotes")
+                    else if (property == "price")
+                        return this.price.ToString();
+                    else if (property == "topnotes")
                         return this.topNotes;
-                    else if (attrName.ToLower() == "middlenotes")
+                    else if (property == "middlenotes")
                         return this.middleNotes;
-                    else if (attrName.ToLower() == "basenotes")
+                    else if (property == "basenotes")
                         return this.baseNotes;
                     else
-                        return null;
+                        throw new ArgumentException($"Invalid property name: {property}");
                 }
                 set
                 {
-                    if (attrName.ToLower() == "name")
-                        this.name = (string)value;
-                    else if (attrName.ToLower() == "brand")
-                        this.brand = (string)value;
-                    else if (attrName.ToLower() == "price")
-                        this.price = (double)value;
-                    else if (attrName.ToLower() == "topnotes")
-                        this.topNotes = (string)value;
-                    else if (attrName.ToLower() == "middlenotes")
-                        this.middleNotes = (string)value;
-                    else if (attrName.ToLower() == "basenotes")
-                        this.baseNotes = (string)value;
+                    if (property == "name")
+                        this.name = value;
+                    else if (property == "brand")
+                        this.brand = value;
+                    else if (property == "price")
+                        this.price = double.Parse(value);
+                    else if (property == "topnotes")
+                        this.topNotes = value;
+                    else if (property == "middlenotes")
+                        this.middleNotes = value;
+                    else if (property == "basenotes")
+                        this.baseNotes = value;
+                    else
+                        throw new ArgumentException($"Invalid property name: {property}");
                 }
             }
         }
